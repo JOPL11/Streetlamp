@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import touchImage from '/touch.png';
+import { useLoader } from '@react-three/fiber';
 
 const Button3 = ({ onClick = () => {} }) => {
   console.log('Button 3 present');
@@ -26,7 +28,10 @@ const Button3 = ({ onClick = () => {} }) => {
   };
 
   // Create texture and geometry
-  const touchTexture = new THREE.TextureLoader().load('./touch.png');
+  //const touchTexture = new THREE.TextureLoader().load('./touch.png');
+  
+    // Load texture with useLoader
+    const touchTexture = useLoader(THREE.TextureLoader, touchImage); // Path to your textur
 
   // Use useFrame to update button appearance or position based on hover state
   useFrame(() => {

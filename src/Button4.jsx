@@ -3,6 +3,8 @@ import React, { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useThree } from '@react-three/fiber';
+import touchImage from '/touch.png';
+import { useLoader } from '@react-three/fiber';
 
 const Button4 = ({ onClick }) => {
   const { scene, camera, raycaster, mouse } = useThree();
@@ -18,7 +20,10 @@ const Button4 = ({ onClick }) => {
   };
 
   // Create plane geometry for the button
-  const touchTexture4 = new THREE.TextureLoader().load('./touch.png');
+  //const touchTexture4 = new THREE.TextureLoader().load('./touch.png');'
+ 
+  // Load texture with useLoader
+  const touchTexture4 = useLoader(THREE.TextureLoader, touchImage); // Path to your textur
   const geometryButton4 = new THREE.PlaneGeometry(1.8, 1.8);
   const materialButton4 = new THREE.MeshStandardMaterial({ 
     color: 0xFFFFFF, 
