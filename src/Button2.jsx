@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
+import zoneImage from '/zone.png';
 
 const Button2 = ({ onClick }) => {
   const buttonRef2 = useRef();
   const [isHovered2, setIsHovered2] = useState(false);
 
   // Load texture with useLoader
-  const touchTexture2 = useLoader(THREE.TextureLoader, '/zone.png'); // Path to your texture
+  const touchTexture2 = useLoader(THREE.TextureLoader, zoneImage); // Path to your texture
 
   // Handle click event
   const handleClick2 = () => {
