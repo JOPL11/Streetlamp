@@ -27,3 +27,21 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Large files
+*.glb
+*.fbx
+*.mp4
+*.mp3
+*.aep
+*.c4d
+*.blend
+*.obj
+*.mtl
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.bmp
+*.tga
+*.tiff
