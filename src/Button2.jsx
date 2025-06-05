@@ -7,7 +7,7 @@ const Button2 = ({ onClick }) => {
   const [isHovered2, setIsHovered2] = useState(false);
 
   // Load texture with useLoader
-  const touchTexture2 = useLoader(THREE.TextureLoader, './zone.png'); // Path to your texture
+  const touchTexture2 = useLoader(THREE.TextureLoader, '/zone.png'); // Path to your texture
 
   // Handle click event
   const handleClick2 = () => {
