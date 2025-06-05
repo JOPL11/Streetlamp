@@ -1,0 +1,216 @@
+html,
+body,
+#root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(22, 22, 22);
+    overflow: hidden; /* Change to hidden to prevent scrolling on the body */
+    z-index: 0;
+}
+
+
+@font-face {
+    font-family: 'InterDisplay';
+    src: url('../public/resources/fonts/InterDisplay-ExtraLight.ttf') format('truetype');
+}
+.base {
+    display: flex;
+    width: 540px;
+    min-width: 540px;
+    position: absolute;
+    top: 200px;
+    left: 40px;
+    padding: 10px;
+    color: white;
+    background: transparent;
+    overflow-y: scroll; /* Allow vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    scroll-behavior: smooth; /* Smooth scroll */
+    pointer-events: auto;
+    min-height: 50vh;
+    opacity: 1;
+    will-change: transform, opacity;
+    scroll-behavior: smooth;
+
+    /* Hides scrollbar but keeps scrolling enabled */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari, and Webkit-based browsers */
+.base::-webkit-scrollbar {
+    width: 0;
+    height: 0; /* Hide horizontal scrollbar */
+    background: transparent;
+}
+
+.scrollhold{
+    opacity: 0;
+    scroll-behavior: smooth;
+}
+
+
+
+.title{
+    position: relative;
+    top: 5px; 
+    left: 50px;
+    text-transform: uppercase;
+    font-size: '1.34em'; 
+    line-height: '0.88em'; 
+    width:100%;
+    height:100%;
+    text-align: left;
+    color: #fdf1f1;
+    padding-bottom: 5px;
+    text-shadow: 1px 2px 0px #eec5c5,
+        1px 2px 1px #eec5c5,
+        1px 2px 1px #dbbaba,
+        1px 3px 1px #cfa1a1,
+        1px 4px 1px #b89595,
+        1px 5px 1px #ac8383,
+        1px 6px 1px #855e5e,
+        1px 7px 1px #645252,
+        1px 8px 1px #6e5656,
+        1px 9px 1px #413030,
+        1px 10px 1px #3d2c2c,
+    1px 18px 6px rgba(16,16,16,0.4),
+    1px 22px 10px rgba(16,16,16,0.2),
+    1px 25px 35px rgba(16,16,16,0.2),
+    1px 30px 60px rgba(16,16,16,0.4);
+}
+
+.sideText {
+    transform: rotate(0deg);
+    transform-origin: center center;
+    text-align: left;
+    font-size: 4%;
+    position: fixed;
+    top: 20px;
+    left: 200px;
+    height: 150px;
+    width: 10px;
+    padding: 5px;
+    background-color: transparent;
+    color: white;
+    font-family: 'InterDisplay', sans-serif;
+    font-size: '11px';
+    cursor: pointer;
+    user-select: none;
+    margin-left: 15px;
+}
+.scrollable-container {
+    top:500px;
+    position: relative;
+    width: 500px; /* Adjust as needed */
+    height: 500px; /* Adjust height to define the visible area */
+    overflow-y: scroll; /* Vertical scrolling */
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.0); /* Optional: make background slightly visible */
+    border-radius: 10px; /* Optional: rounded corners */
+}
+
+.section1, .section2, .section3 {
+    position: relative; /* Make sections relative to the scrollable container */
+    padding: 20px; /* Add some padding */
+    width: 100%; /* Ensure the section takes up full container width */
+    height:400px;
+    
+    color: white;
+    background: rgba(255, 255, 255, 0.0); /* Transparent background */
+    text-transform: uppercase;
+
+    text-align: left;
+    font-size: 21px;
+    opacity: 1; /* Initially visible */
+    margin-bottom: 20px; /* Spacing between sections */
+}
+
+
+.p{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-family: 'InterDisplay', sans-serif;
+    text-transform: none;
+}
+.next{
+    display: flex;
+    justify-content: right;
+    align-items: center; /* Optional: Align items vertically in the center */
+    padding: 10px;
+    font-family: 'InterDisplay', sans-serif;
+    width: 300px; /* Adjust width as needed */
+}
+.next2{
+    display: flex;
+    justify-content: right;
+    align-items: center; /* Optional: Align items vertically in the center */
+    padding: 10px;
+    font-family: 'InterDisplay', sans-serif;
+    width: 300px; /* Adjust width as needed */
+}
+.next3{
+    display: flex;
+    justify-content: right;
+    align-items: center; /* Optional: Align items vertically in the center */
+    padding: 10px;
+    font-family: 'InterDisplay', sans-serif;
+    width: 300px; /* Adjust width as needed */
+}
+
+
+
+
+.section h1,
+.section h2 {
+    margin-top: 50px;
+    margin-bottom: 8px;
+    margin-left: 50px;
+    font-size: 74px;
+    line-height: 0.95em;
+    width:100%;
+    height:100%;
+}
+
+/* Hide the scrollbar completely */
+.scrollable-text::-webkit-scrollbar {
+    display: none;
+}
+.base::-webkit-scrollbar {
+    display: none;
+}
+
+.section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.section::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.0);
+    border-radius: 4px;
+}
+
+.section::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.0);
+}
+/* Hide scrollbar for all elements */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Only show scrollbar on hover for scrollable elements */
+.scrollable-text:hover::-webkit-scrollbar {
+    display: none;
+}
+@media only screen and (max-width: 767px) {
+
+    .base{    
+        left: -540px;
+        width: 300px;
+        min-width:300px;
+         }
+
+}
