@@ -22,12 +22,9 @@ import { ToneMapping } from '@react-three/postprocessing';
 import { Environment } from '@react-three/drei';
 import Rain from './Rain.jsx'; 
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
- 
+import CopyrightNotice from './CopyrightNotice';
 
-
-gsap.registerPlugin(ScrollTrigger);
-
-const root = ReactDOM.createRoot(document.querySelector('#root'));
+// ... rest of the code remains the same ...
 
 
 
@@ -358,6 +355,21 @@ const App = () => {
                     }}
                         onClick={textClick3}>next</div>
                 </div>
+            </div>
+            <div style={{
+              position: 'fixed',
+              bottom: '20px',
+              right: '20px',
+              zIndex: 99999,
+              color: 'red',
+              fontSize: '24px',
+              fontWeight: 'bold',
+              backgroundColor: 'white',
+              padding: '20px',
+              borderRadius: '8px',
+              boxShadow: '0 0 20px rgba(0,0,0,0.5)'
+            }}>
+              © 2023 Jan Peiro
             </div>
         </>
     );

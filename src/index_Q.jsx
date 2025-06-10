@@ -18,8 +18,10 @@ import { Environment } from '@react-three/drei';
 import Rain from './Rain.jsx'; 
 import { Preload, PerformanceMonitor } from '@react-three/drei';
 
+
 import { gsap } from 'gsap';
 import TextOverlay from './TextOverlay.jsx';
+import CopyrightNotice from './CopyrightNotice';
 //import { Profiler } from 'react';
 //import Stats from 'stats.js';  <Profiler id="CanvasProfiler" onRender={onRenderCallback}></Profiler> 
 //import WelcomeDiv from './WelcomeDiv.jsx';
@@ -151,6 +153,7 @@ const handleDecline = () => {
             <TextOverlay isVisible={contentVisible} />
           </div>
         )}
+        <CopyrightNotice />
         <Canvas 
             ref={canvasRef}
             dpr={dpr} // Now controlled by PerformanceMonitor

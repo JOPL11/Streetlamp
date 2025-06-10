@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, Suspense, useState, } from 'react';
+import React, { useEffect, useRef, Suspense, useState, useMemo } from 'react';
 import { useThree, useLoader, useFrame } from '@react-three/fiber';
 import { OBJLoader } from 'three-stdlib';
 import { MeshStandardMaterial, MeshBasicMaterial, PlaneGeometry, Mesh } from 'three'; 
 import * as THREE from 'three';
+import { PerspectiveCamera, OrbitControls } from '@react-three/drei';
 import { Clock } from 'three'; 
 import { easing } from "maath"; // Assuming "maath" is installed properly
 import Button from './Button.jsx';
@@ -70,13 +71,13 @@ const initializeMaterials = () => {
     color: 0xffff00, emissive: 0xFFC000, emissiveIntensity: 11,  metalness: 0, roughness: 1, 
   });
   const matteblack = new THREE.MeshPhysicalMaterial({ 
-  color: 0x000000, metalness: 0.5, roughness: 0.9, reflectivity: 0.5, clearcoat: 0.1, clearcoatRoughness: 0.2 
+  color: 0x000000, metalness: 0.8, roughness: 0.9, reflectivity: 0.5, clearcoat: 0.1, clearcoatRoughness: 0.2 
   }); 
   const chrome = new THREE.MeshPhysicalMaterial({ 
   color: 0xc6c6c6, metalness:0.5, roughness: 0,  reflectivity: 0.5, clearcoat: 0.5, clearcoatRoughness: 0.5,
   }); 
   const darkgrey = new THREE.MeshPhysicalMaterial({     
-    color: 0xACACAC,  metalness: 0.5, roughness: 0.9, reflectivity: 0.5, clearcoat: 0.1, clearcoatRoughness: 0.2
+    color: 0xACACAC,  metalness: 0.7, roughness: 0.9, reflectivity: 0.5, clearcoat: 0.1, clearcoatRoughness: 0.2
   }); 
   const green = new THREE.MeshPhysicalMaterial({     
     color: 0x6c8f4e, metalness: 0.5, roughness: 0.1, reflectivity: 0.5, clearcoat: 0.0, clearcoatRoughness: 0.2 
@@ -186,14 +187,18 @@ const blue = new THREE.MeshPhysicalMaterial({
   
 //extend({ EffectComposer, RenderPass, UnrealBloomPass });
   // ---------------------------------------------------------------------------------------------------- Experience ----------------------------------->
-  const Experience = ( { paused }) => {
-   //const { camera, mouse } = useThree();  // Accessing the camera object
-   const {  scene, gl, camera } = useThree();
-   const { camera: threeCamera } = useThree();
+  const Experience = ( { paused } ) => {
+   const { scene, camera } = useThree();
    const [materials, setMaterials] = useState(null);
-   //const renderer = useContext(RendererContext);
-// Initialize materials and destructure the result
-  const { matteblack, black, greenlight, blue, yellowlight, whitelight, white, yellow, redlight2, bluelight3, glass, chrome, grey, lightgrey, darkgrey, red } = initializeMaterials();
+   const controlsRef = useRef();
+   const spotLightRef = useRef();
+   const [target, setTarget] = useState([-0.1, 2, 0.8]);
+   
+   // Add spotlight helper (commented out to avoid errors)
+   // useHelper(spotLightRef, SpotLightHelper, 'white');
+   
+   // Initialize materials and destructure the result
+   const { matteblack, black, greenlight, blue, yellowlight, whitelight, white, yellow, redlight2, bluelight3, glass, chrome, grey, lightgrey, darkgrey, red } = useMemo(() => initializeMaterials(), []);
 
    useEffect(() => {
     const loadedMaterials = initializeMaterials();
@@ -207,8 +212,9 @@ const blue = new THREE.MeshPhysicalMaterial({
     const group1Ref = useRef(null);
     const group2Ref = useRef(null);
     const screenerRef = useRef();
-
-    UseSwivelTV(screenerRef, threeCamera);
+    
+    // Use the hook at the top level
+    UseSwivelTV(screenerRef, camera);
 
     const animateGroups = (  ) => {
 
@@ -297,36 +303,11 @@ const blue = new THREE.MeshPhysicalMaterial({
       }
     };
 
-     // Rig it up
-    function Rig() {
-      const { camera, mouse } = useThree();
-      useFrame((state, delta) => {
-        // Calculate the scaled vertical mouse movement
-        const scaledMouseY = state.mouse.y * 0.5; // Adjust the scaling factor as needed
-        // Update the camera rotation based on the scaled vertical mouse movement
-        camera.rotation.x = -scaledMouseY * Math.PI / 2;
-        // Calculate the scaled horizontal mouse movement
-        const scaledMouseX = state.mouse.x * 0.15; // Adjust the scaling factor as needed
-        // Update the camera position based on scaled mouse coordinates
-        const newPositionX = Math.sin(scaledMouseX / 4) * 2.5;
-        const newPositionY = 1.45 + scaledMouseY;
-        const newPositionZ = Math.cos(scaledMouseX / 2.5) * 1.7; 
-
-        // Apply additional leftward movement when the mouse is on the left side of the screen
-        let cameraX = newPositionX;
-        if (state.mouse.x < 0) {
-          cameraX -= 0.3; // Adjust the value to move the camera further to the left
-        }
-        if (state.mouse.x > 0) {
-          cameraX += 0.3; // Adjust the value to move the camera further to the right
-        }
-        // Update the camera position
-        easing.damp3(camera.position, [cameraX, newPositionY, newPositionZ], 1.1, delta);
-        // Keep the camera looking at the same point
-        camera.lookAt(-0.1, 2.9, 0.8);
-      });
-      return null; // Since this is a utility component, it doesn't render anything
-    }
+     // Camera and controls setup
+    useFrame(() => {
+      // This is where you can add any custom camera behavior if needed
+      // The OrbitControls will handle most of the camera movement
+    });
 
 
   
@@ -931,17 +912,122 @@ const blue = new THREE.MeshPhysicalMaterial({
     return (
     <>
 
-    <group>
-      
-  
-      </group>     
-      <primitive object={DL} useRef={DLRef}/>
-      <primitive object={floor} material={matteblack}/>
+    <PerspectiveCamera 
+      makeDefault 
+      position={[0, 4, 2.7]} 
+      fov={75} 
+      near={0.1} 
+      far={1000}
+    />
+    <OrbitControls
+      ref={controlsRef}
+      target={target}
+     
+      enableZoom={true}
+      enablePan={true}
+      minPolarAngle={Math.PI / 1.3} // ~60 degrees (reduced from 30)
+      maxPolarAngle={Math.PI / 1.8} // ~100 degrees (reduced from ~120)
+      minAzimuthAngle={-Math.PI / 3.5} // -45 degrees
+      maxAzimuthAngle={Math.PI / 5} // 45 degrees
+      enableDamping={true}
+      dampingFactor={0.01}
+      screenSpacePanning={true}
+      panSpeed={0.5}
+      maxDistance={10}
+      minDistance={1}
+      onChange={(e) => {
+        // Limit vertical panning (Y-axis)
+        const minY = 1.0;  // Lower minimum Y for more downward movement
+        const maxY = 6.0;  // Higher maximum Y for more upward movement
+        
+        // Get current camera position
+        const position = e.target.object.position;
+        
+        // Clamp Y position between minY and maxY
+        position.y = Math.max(minY, Math.min(maxY, position.y));
+        
+        // Update camera position
+        e.target.object.position.copy(position);
+      }}
+    />
+    <primitive object={floor} material={matteblack}/>
 
-      <group ref={group1Ref} position= {[ 0, 0.9, 0 ]}>    
-      <Button />
-      <Button2 />
-      <Button3 />
+    {/* Spotlight for objA */}
+    <spotLight
+      ref={spotLightRef}
+      position={[0, 9, 11]}
+      angle={0.8}
+      penumbra={0.2}
+      intensity={220}
+      distance={25}
+      castShadow
+      shadow-mapSize-width={2048}
+      shadow-mapSize-height={2048}
+      shadow-bias={-0.0001}
+      color="#ffffff"
+    />
+
+    <group ref={group1Ref} position= {[ 0, 0.9, 0 ]}>    
+    <Button />
+    <Button2 />
+    <Button3 />
+    <primitive 
+      object={objA} 
+      scale={[0.0025, 0.0025, 0.0025]}
+      position={[0, 1.8 , 0]} 
+      rotation={[0, Math.PI / -2 + THREE.MathUtils.degToRad(-55), 0]} 
+      castShadow 
+    />      
+    <primitive 
+      object={walk} 
+      scale={[0.0015, 0.0015, 0.0015]} 
+      position={[-0.24, 1.8, -0]} 
+      rotation={[0, Math.PI / -2 + THREE.MathUtils.degToRad(80), 0]} 
+      castShadow 
+    />   
+    <primitive 
+      object={objB} 
+      scale={[0.0025, 0.0025, 0.0025]}
+      position={[0, 1.8 , 0]} 
+      rotation={[0, Math.PI / -2 + THREE.MathUtils.degToRad(-55), 0]} 
+      castShadow 
+    />
+    <primitive 
+      object={objC} 
+      scale={[0.0025, 0.0025, 0.0025]}
+      position={[0, 1.8 , 0]} 
+      rotation={[0, Math.PI / -2 + THREE.MathUtils.degToRad(-55), 0]} 
+      castShadow 
+    />
+    <primitive 
+      object={objD} 
+      scale={[0.0025, 0.0025, 0.0025]}
+      position={[0, 1.8 , 0]} 
+      rotation={[0, Math.PI / -2 + THREE.MathUtils.degToRad(-55), 0]} 
+      castShadow 
+    />
+    <primitive 
+      object={obj2} 
+      scale={[0.0025, 0.0025, 0.0025]} 
+      position={[0, 1.8, 0]} 
+      rotation={[0, Math.PI / -2 + THREE.MathUtils.degToRad(-55), 0]} 
+      castShadow 
+    />
+    <primitive 
+      object={obj3} 
+      scale={[0.0025, 0.0025, 0.0025]} 
+      position={[0, 1.8, 0]} 
+      rotation={[0, Math.PI / -2 + THREE.MathUtils.degToRad(-55), 0]} 
+      castShadow 
+    />
+    <primitive 
+      object={clonedWires} 
+      scale={[0.0025, 0.0025, 0.0025]} 
+      position={[-2.15, 1.8, -12.7]} 
+      rotation={[0, Math.PI / -2 + THREE.MathUtils.degToRad(-55), 0]} 
+      ref={wiresRef}
+      castShadow 
+    />
       <primitive 
         object={objA} 
         scale={[0.0025, 0.0025, 0.0025]}
@@ -1103,11 +1189,7 @@ const blue = new THREE.MeshPhysicalMaterial({
       </group>
    
     <group>
-  {/* targetPosition={targetPosition} <Blitz2 />  <Rig fov={20} aspect={window.innerWidth / window.innerHeight} near={0.1} far={1000} />        <Blitz />     <Traffic />  <OrbitControls enableDamping={true} dampingFactor={0.05}/> <OrbitControls enableDamping={true} dampingFactor={0.05}/>   */}
-
-    <Rig fov={20} aspect={window.innerWidth / window.innerHeight} near={0.1} far={1000} />
-     
-
+      {/* targetPosition={targetPosition} <Blitz2 /> <Blitz /> <Traffic /> */}
     </group>
     
     </>
