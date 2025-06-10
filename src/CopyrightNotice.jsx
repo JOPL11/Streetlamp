@@ -8,7 +8,7 @@ const CopyrightNotice = () => {
       style={{
         position: 'fixed',
         bottom: '40px',
-        left: '40px',
+        right: '40px',
         zIndex: 99999,
         color: 'white',
         fontSize: '14px',

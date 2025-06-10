@@ -1,57 +1,100 @@
 
 .text-overlay {
-    width: 0px;
+    width: 25vw;
     max-height: 50vh;
-    background: rgba(15, 20, 30, 0.0);
-    backdrop-filter: blur(100px);
+    background: rgba(15, 20, 30, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: white;
-    padding: 30px ;
-    border-radius: 11px;
+    padding: 25px 30px;
+    border-radius: 11px 0 0 11px;
     overflow-y: auto;
-    overflow-x: auto;
+    overflow-x: hidden;
     z-index: 1000;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    transform: translateY(-50%) translateX(-100%);
+    box-shadow: 2px 0 20px rgba(0,0,0,0.2);
+    transform: translateY(-50%) translateX(calc(-100% + 60px));
     margin-left: 5%;
-    margin-right: 1%;
     font-family: 'InterDisplay', sans-serif;
-    font-size: 1.2em;
-    position: absolute; /* Ensure positioning context */
-    top: 20%; /* Base vertical centering */
-    left: 0; /* Default left position */
-    visibility: hidden; /* Use opacity instead of visibility for smooth fading */
-    transition: all 0.0s ease-in-out; /* Animate all changing properties */
+    font-size: 1.1em;
+    position: fixed;
+    top: 50%;
+    right: 0;
+    left: auto;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity, background-color, backdrop-filter;
+    display: none;
+    min-width: 60px;
+  }
+  
+  .text-overlay.visible {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+    display: block;
+    width: 25vw;
+  }
+  
+  .text-overlay:not(.expanded) {
+    width: 60px;
+    padding: 25px 10px;
+    overflow: hidden;
+    background: rgba(15, 20, 30, 0);
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+    box-shadow: 2px 0 0 rgba(0,0,0,0);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .text-overlay.expanded {
-    width: 25vw;
-    max-height: 50vh;
-    visibility: visible;/* Make it visible */
-    left: 50%; /* Center horizontally by default */
-    transform: translateX(-50%) translateY(-50%); /* Center both axes */
-    overflow-y: auto;
-    overflow-x: none;
+    width: 30vw;
+    max-height: 70vh;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(50px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(10%);
+    transform: translateY(-50%) translateX(0);
+    right: 0;
+    left: auto;
+    padding: 25px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(34, 34, 34, 0.37);
   }
   
   /* Media query for screens smaller than 768px */
   @media (max-width: 768px) {
     .text-overlay {
-      width: 1vw;
-      max-height: 50vh;
+      width: 90vw;
+      max-height: 80vh;
+      opacity: 0;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0.95);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       visibility: hidden;
-      top: 50%; /* Adjust vertical position for centering */
-      left: 0; /* Default position */
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .text-overlay.visible,
+    .text-overlay.expanded {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      visibility: visible;
     }
     
     .text-overlay.expanded {
-      width: 90vw; /* Wider on small screens */
-      max-width: 90vw; /* Prevent overflow beyond viewport */
-      max-height: 50vh;
-      left: 50%; /* Center horizontally */
-      top: 50%; /* Center vertically */
-      transform: translate(-50%, -50%); /* Center both axes */
-      visibility: visible;
-      box-sizing: border-box; /* Ensure padding is included in width */
+      width: 90vw;
+      max-width: 90vw;
+      max-height: 80vh;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 25px;
+      box-sizing: border-box;
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
     }
   }
   
@@ -87,23 +130,75 @@
   
   .toggle-button {
     position: absolute;
-    right: 0px;
-    top: 50px;
+    left: 0;
+    top: 50%;
     transform: translateY(-50%);
-    width: 80px;
-    height: 80px;
-    background: rgba(104, 105, 107, 0.0);
+    width: 24px;
+    height: 60px;
+    background: #ff4d4d;
     border: none;
-    color: white;
+    border-radius: 0 4px 4px 0;
     cursor: pointer;
-    border-radius: 0 9px 9px 0;
-    visibility:visible;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    box-shadow: 1px 0 4px rgba(0,0,0,0.2);
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .toggle-button:hover {
+    background: #ff3333;
+    width: 28px;
+  }
+  
+  .toggle-button:focus {
+    outline: none;
+  }
+  
+  .toggle-button::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 0 6px 8px;
+    border-color: transparent transparent transparent white;
+    transition: transform 0.3s ease;
+  }
+  
+  .text-overlay.expanded .toggle-button::before {
+    transform: rotate(180deg);
   }
   
   .content-container {
     padding-right: 10px;
- 
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  }
+  
+  .text-overlay.expanded .content-container {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .text-section {
+    margin-bottom: 15px;
+    transition: all 0.3s ease-out;
+  }
+  
+  .text-section h3 {
+    margin: 0 0 0 20px;
+    color: #64b5f6;
+    font-weight: 500;
+  }
+  
+  .text-section p {
+    margin: 20px;
+    line-height: 1.5;
   }
   
   /* Scrollbar styling */
