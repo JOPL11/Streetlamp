@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, Suspense, useState, useMemo } from 'react';
+import React, { useEffect, useRef, Suspense, useState, useMemo, useCallback } from 'react';
 import { useThree, useLoader, useFrame } from '@react-three/fiber';
 import { OBJLoader } from 'three-stdlib';
 import { MeshStandardMaterial, MeshBasicMaterial, PlaneGeometry, Mesh } from 'three'; 
@@ -188,11 +188,30 @@ const blue = new THREE.MeshPhysicalMaterial({
 //extend({ EffectComposer, RenderPass, UnrealBloomPass });
   // ---------------------------------------------------------------------------------------------------- Experience ----------------------------------->
   const Experience = ( { paused } ) => {
-   const { scene, camera } = useThree();
+   const { scene, camera, gl } = useThree();
    const [materials, setMaterials] = useState(null);
+   const [hasInteracted, setHasInteracted] = useState(false);
    const controlsRef = useRef();
    const spotLightRef = useRef();
    const [target, setTarget] = useState([-0.1, 2, 0.8]);
+   
+   // Handle first interaction
+   const handleFirstInteraction = useCallback(() => {
+     if (!hasInteracted) {
+       setHasInteracted(true);
+       // Request fullscreen on the document element to keep all UI elements
+       const element = document.documentElement;
+       if (element.requestFullscreen) {
+         element.requestFullscreen().catch(err => {
+           console.log(`Error attempting to enable fullscreen: ${err.message}`);
+         });
+       } else if (element.webkitRequestFullscreen) { // Safari
+         element.webkitRequestFullscreen();
+       } else if (element.msRequestFullscreen) { // IE11
+         element.msRequestFullscreen();
+       }
+     }
+   }, [hasInteracted]);
    
    // Add spotlight helper (commented out to avoid errors)
    // useHelper(spotLightRef, SpotLightHelper, 'white');
@@ -215,6 +234,12 @@ const blue = new THREE.MeshPhysicalMaterial({
     
     // Use the hook at the top level
     UseSwivelTV(screenerRef, camera);
+    
+    // Keep the camera ref updated for other uses
+    const cameraRef = useRef(camera);
+    useFrame(() => {
+      cameraRef.current = camera;
+    });
 
     const animateGroups = (  ) => {
 
@@ -909,9 +934,26 @@ const blue = new THREE.MeshPhysicalMaterial({
 
 
    
-    return (
-    <>
+    // Add event listeners for first interaction
+  useEffect(() => {
+    const handleInteraction = () => {
+      if (!hasInteracted) {
+        handleFirstInteraction();
+      }
+    };
+    
+    const canvas = gl.domElement;
+    canvas.addEventListener('click', handleInteraction);
+    canvas.addEventListener('touchstart', handleInteraction);
+    
+    return () => {
+      canvas.removeEventListener('click', handleInteraction);
+      canvas.removeEventListener('touchstart', handleInteraction);
+    };
+  }, [gl.domElement, hasInteracted, handleFirstInteraction]);
 
+  return (
+    <>
     <PerspectiveCamera 
       makeDefault 
       position={[0, 4, 2.7]} 

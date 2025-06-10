@@ -38,14 +38,14 @@ const CopyrightNotice = () => {
           style={{
             color: 'inherit',
             textDecoration: 'none',
-            borderBottom: '1px solid rgba(255,255,255,0.5)',
+            borderBottom: '0px solid rgba(255,255,255,0.5)',
             lineHeight: '1.2',
             marginTop: '4px'
           }}
         >
           © 2023 Jan Peiro
         </a>
-        <div style={{ fontSize: '0.9em', opacity: 0.8, marginTop: '4px' }}>For entertainment only</div>
+        <div style={{ fontSize: '0.9em', opacity: 0.8, marginTop: '4px' }}></div>
       </div>
     </div>
   );
