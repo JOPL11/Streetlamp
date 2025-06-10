@@ -14,6 +14,15 @@ const TextOverlay = ({ isVisible }) => {
   // Project information
   const sections = [
     {
+      title: "Profile",
+      content: `Jan Peiro - Communications Design, -Dipl.
+      A multidisciplinary creator from Montreal Canada, passionate about design, 3D, code, and motion - ranging from strict brand systems to boundary-pushing exhibits.
+      Studied Communication-Design in Munich Germany. Currently based in Germany.
+      15+ years collaborating with agencies, in-house teams, and startups - balancing innovation with brand 
+      compliance, ensuring visual consistency across all deliverables.
+      Spoken languages are English, German, Spanish and French. Canada / EU dual citizen.`
+    },
+    {
       title: "Portfolio",
       content: "MotionReel Cinema4D / After Effects"
     },
@@ -37,6 +46,7 @@ const TextOverlay = ({ isVisible }) => {
       title: "",
       content: "Siebert & Wolf - TÜV Süd"
     },
+    
     {
       title: "",
       content: "Spiegel Geschichte TV - Website"
@@ -52,6 +62,14 @@ const TextOverlay = ({ isVisible }) => {
     {
       title: "Contact",
       content: "jan.peiro@protonmail.com"
+    },
+    {
+      title: "Experimental",
+      content: "Facility"
+    },
+    {
+      title: "",
+      content: "WebXR - Quest3S"
     },
     
 
