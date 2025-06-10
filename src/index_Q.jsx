@@ -244,7 +244,7 @@ const handleDecline = () => {
             </div>
             <div style={{ lineHeight: '1.8', top: '50px', position: 'relative' }}>
               <div></div>
-              <div>how many sci-fi movie references can you spot? </div>
+              <div> Dystopian Streetlamp </div>
              
             </div>
           </div>
