@@ -74,7 +74,15 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="contact-form-container">
+    <div className="contact-form-container" style={{ 
+      background: 'none', 
+      boxShadow: 'none', 
+      border: 'none', 
+      padding: '0 20px',
+      width: '100%',
+      maxWidth: 'calc(100% - 40px)',
+      margin: '0 auto'
+    }}>
       <h3 style={{color: '#64b5f6', textAlign: 'center', fontSize: '1.4em', fontWeight: '500', marginBottom: '20px', marginTop: '20px', fontFamily: 'InterDisplay, sans-serif'}}></h3>
       <form onSubmit={handleSubmit} className="contact-form">
         <div className="form-group">
@@ -141,6 +149,12 @@ const TextOverlay = ({ visible = false }) => {
     { 
       title: "", 
       content: `Creates and implements visual concepts, from original designs to refining existing CI/CD systems, with expertise in animation and interactive development. 3+ years management experience. 15+ years collaborating with agencies, in-house teams, and startups - balancing innovation with brand compliance, ensuring visual consistency across all deliverables.`,
+      image: "",
+      link: ""
+    },
+    { 
+      title: "Services", 
+      content: "Website design & coding, App design & coding, 3D rendering, Motion design, Branding, Print design, Social media design, Visualization, Animation, Interactive development, SEO, Content creation, Project management, Team management, Client management, Innovation, Creativity, Strategy, Research. ",
       image: "",
       link: ""
     },

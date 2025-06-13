@@ -116,6 +116,7 @@ const handleDecline = () => {
             audioRef.current.play();
         } else {
             audioRef.current = new Audio('./rainsounds.mp3');
+            audioRef.current.volume = 0.1; // Set volume to 30% of original
             audioRef.current.loop = true;
             audioRef.current.play().catch((error) => console.error('Audio failed to play', error));
         }
@@ -182,11 +183,23 @@ const handleDecline = () => {
             <TextOverlay visible={contentVisible} />
           </div>
         )}
-        <CopyrightNotice />
+        <div style={{
+          position: 'fixed',
+
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          display: 'flex',
+          justifyContent: 'center',
+          pointerEvents: 'none'
+        }}>
+          <CopyrightNotice />
+        </div>
         <div style={{
           position: 'fixed',
           top: 0,
           left: 0,
+          bottom:'10px',
           width: '100vw',
           height: '100vh',
           zIndex: 150,
