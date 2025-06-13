@@ -146,7 +146,7 @@ const handleDecline = () => {
             zIndex: 1501, // Ensure it's above other elements  <Rain />    <PreloadModels onModelsLoaded={handleModelsLoaded}  />   <MotionBlur velocityScale={0.5}  motionStrength={0.5} />
           }}
         >
-          August 3, 2053 
+          wordpress?
         </div>
         {contentVisible && (
           <div style={{ position: 'fixed', zIndex: 1001  }}>

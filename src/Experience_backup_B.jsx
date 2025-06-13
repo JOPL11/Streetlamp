@@ -16,11 +16,13 @@ import { CSSPlugin  } from '../public/resources/gsap/CSSPlugin.js';
 import { CubeTextureLoader } from 'three/src/loaders/CubeTextureLoader';
 // import ScrollComponent from './ScrollComponent'; // Import the scroll component             <ScrollComponent />
 //import Traffic from './TrafficLight.jsx'
-//import Blitz from './Blitz4.jsx'
+//import Blitz from './Blitz2.jsx'
 //import City from './City_holodeck.jsx'
 //import Car1 from './City_trails.jsx'
 //import Car2 from './City_trails2.jsx'
 import Decker from './Decker.jsx'
+
+import { Html } from '@react-three/drei';
 
 const Traffic = React.lazy(() => import('./TrafficLight.jsx'));
 //const Blitz2 = React.lazy(() => import('./Blitz3.jsx'));
@@ -191,9 +193,19 @@ const blue = new THREE.MeshPhysicalMaterial({
    const { scene, camera, gl } = useThree();
    const [materials, setMaterials] = useState(null);
    const [hasInteracted, setHasInteracted] = useState(false);
+   //const [showBlitz, setShowBlitz] = useState(true);
    const controlsRef = useRef();
    const spotLightRef = useRef();
    const [target, setTarget] = useState([-0.1, 2, 0.8]);
+   
+   // Toggle Blitz visibility every minute
+   /*useEffect(() => {
+     const interval = setInterval(() => {
+       setShowBlitz(prev => !prev);
+     }, 300); // Toggle every minute (30000ms = 30 seconds)
+     
+     return () => clearInterval(interval);
+   }, []); */
    
    // Handle first interaction
    const handleFirstInteraction = useCallback(() => {
@@ -300,7 +312,7 @@ const blue = new THREE.MeshPhysicalMaterial({
     };
 
     const animateGroups3 = () => {
-      handleClick(); // Assuming handleClick is defined elsewhere
+     // handleClick(); // Assuming handleClick is defined elsewhere
     
       // Check if targetPosition is defined and contains coordinates lookAt-0.1, 2.9, 0.8
       if (targetPosition && targetPosition.length === 3) {
@@ -1010,9 +1022,10 @@ const blue = new THREE.MeshPhysicalMaterial({
     />
 
     <group ref={group1Ref} position= {[ 0, 0.9, 0 ]}>    
-    <Button />
+    <Button onClick={animateGroups} />
     <Button2 />
-    <Button3 />
+    <Button3 onClick={animateGroups} />
+
     <primitive 
       object={objA} 
       scale={[0.0025, 0.0025, 0.0025]}
@@ -1070,6 +1083,24 @@ const blue = new THREE.MeshPhysicalMaterial({
       ref={wiresRef}
       castShadow 
     />
+    <mesh 
+      position={[-2.15, 1.6, -12.6]}   
+      rotation={[0, Math.PI / -2 + THREE.MathUtils.degToRad(-55), 0]}
+      onClick={animateGroups2}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        document.body.style.cursor = 'pointer';
+      }}
+      onPointerOut={(e) => {
+        e.stopPropagation();
+        document.body.style.cursor = 'auto';
+      }}
+      onPointerMissed={() => document.body.style.cursor = 'auto'}
+      raycast={THREE.Mesh.raycast}
+    >
+      <planeGeometry args={[1, 1]} />
+      <meshBasicMaterial color="red" side={THREE.DoubleSide} transparent opacity={0.0} />
+    </mesh>
       <primitive 
         object={objA} 
         scale={[0.0025, 0.0025, 0.0025]}
@@ -1217,22 +1248,70 @@ const blue = new THREE.MeshPhysicalMaterial({
 
       </group>
   
-      <group ref={group2Ref} position={[0, 1.2, -13]} >
-         
+      <group ref={group2Ref} position={[0.9, 0.6, 0.6]}>
+        <Html
+        scale={[0.12, 0.12, 0.12]}
+          position={[-1, 1.5, 0]}
+          transform
+          occlude={false}
+          distanceFactor={10}
+          zIndexRange={[10, 0]}
+          style={{
+            transform: 'scale(2)',
+            transformOrigin: 'center',
+            pointerEvents: 'none',
+            width: '500px',
+            height: '500px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            imageRendering: 'crisp-edges',
+            WebkitFontSmoothing: 'antialiased',
+            MozOsxFontSmoothing: 'grayscale',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            willChange: 'transform'
+          }}
+        >
+          <img 
+            src="/textures/logo.svg" 
+            alt="Logo" 
+            style={{
+              width: '200px',
+              height: '200px',
+              objectFit: 'contain',
+              imageRendering: 'crisp-edges',
+              filter: 'drop-shadow(0 0 1px rgba(0,0,0,0.3))',
+              transform: 'translateZ(0)'
+            }} 
+          />
+        </Html>
+        </group>
+        <group ref={group2Ref} position={[0, 1.2, -13]}>
           <Blimp />
-         
-          <City />
+          <group scale={[1.99, 1.6, 1.6]} position={[0, 2.5, 0]}>
+            <City />
+          </group>
           <Car1 />
           <Car2 />
           <Car3 />
           <Decker />
-    
-       
-      </group>
+        </group>
+       <group rotation={[0, Math.PI / 0.455, 0]} position={[-0.426, 1.4, -12]}   onClick={animateGroups3}>
    
-    <group>
-      {/* targetPosition={targetPosition} <Blitz2 /> <Blitz /> <Traffic /> */}
-    </group>
+          <planeGeometry   args={[0.5, 0.7]}    
+          onPointerOver={(e) => {
+            e.stopPropagation();
+            document.body.style.cursor = 'pointer';
+          }}
+          onPointerOut={() => {
+            document.body.style.cursor = 'auto';
+          }}
+   />
+          <meshBasicMaterial color="green" side={THREE.DoubleSide}  transparent opacity={0.5} />
+      
+        {/* targetPosition={targetPosition} <Blitz2 /> <Blitz /> <Traffic /> */}
+      </group>
     
     </>
     );
