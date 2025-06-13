@@ -723,13 +723,13 @@ const City = ( { dronePosition } ) => {
                     return Math.random() * (40 - 20) + 7; // Generate a random number between 11 and 20
                   }
                 const tCars = gsap.timeline({ repeat: -1, yoyo: true });
-                tCars.to(Car4Ref.current.position, { x: -2.2, y: 3, z: 27, duration: 11, ease: 'power4.in' } ) // First pass
-                     .to(Car4Ref.current.position, { x: -3.2, y: 3, z: 27, duration: 5, ease: 'power4.out' } ) // reposition at start
-                     .to(Car4Ref.current.position, { x: 2.8, y: 3, z: 27, duration: 2, ease: 'power4.in'  } ) // reposition to right side
-                     .to(Car4Ref.current.position, { x: 2.4, y: 3, z:-14, duration: randomDuration(), ease: 'power4.out'  } ) // travel to end
-                     .to(Car4Ref.current.position, { x: 2.9, y: 3, z:-13, duration: 5, ease: 'power4.in'  } ) // reposition
-                     .to(Car4Ref.current.position, { x: 2.8, y:3, z: 27, duration: randomDuration(), ease: 'power4.out'  } ) // second pass
-                     .to(Car4Ref.current.position, { x: 2.7, y: 3, z: 27, duration: 2, ease: 'power4.in'  } ) //
+                tCars.to(Car4Ref.current.position, { x: -2.2, y: 2, z: 27, duration: 11, ease: 'power4.in' } ) // First pass
+                     .to(Car4Ref.current.position, { x: -3.2, y: 2, z: 27, duration: 5, ease: 'power4.out' } ) // reposition at start
+                     .to(Car4Ref.current.position, { x: 2.8, y: 2, z: 27, duration: 2, ease: 'power4.in'  } ) // reposition to right side
+                     .to(Car4Ref.current.position, { x: 2.4, y: 2, z:-14, duration: randomDuration(), ease: 'power4.out'  } ) // travel to end
+                     .to(Car4Ref.current.position, { x: 2.9, y: 2, z:-13, duration: 5, ease: 'power4.in'  } ) // reposition
+                     .to(Car4Ref.current.position, { x: 2.8, y:2, z: 27, duration: randomDuration(), ease: 'power4.out'  } ) // second pass
+                     .to(Car4Ref.current.position, { x: 2.7, y: 2, z: 27, duration: 2, ease: 'power4.in'  } ) //
                      
                      ;
                     },    
@@ -1176,7 +1176,7 @@ const City = ( { dronePosition } ) => {
         object={car4} 
         ref={Car4Ref}
         scale={[0.0045, 0.0045, 0.0045]} 
-        position={[2.1, 2.8, -30]} 
+        position={[2.1, 1.5, -30]} 
         rotation={[0, 1.57, 0]} 
         castShadow 
       />

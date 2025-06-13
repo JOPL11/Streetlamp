@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import './TextOverlay.new.css';
 
-const TextOverlay = ({ isVisible = true }) => {
+const TextOverlay = ({ visible = false }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleRef = useRef(null);
 
@@ -101,14 +101,16 @@ const TextOverlay = ({ isVisible = true }) => {
 
   return (
     <>
-      <button 
-        ref={toggleRef}
-        className="toggle-button"
-        onClick={togglePanel}
-        aria-label={isOpen ? 'Close panel' : 'Open panel'}
-      >
-        {isOpen ? '✕' : '☰'}
-      </button>
+      {visible && (
+        <button
+          ref={toggleRef}
+          className="toggle-button"
+          onClick={togglePanel}
+          aria-label={isOpen ? 'Close panel' : 'Open panel'}
+        >
+          {isOpen ? '✕' : '☰'}
+        </button>
+      )}
       
       <div className={`content-container ${isOpen ? 'expanded' : ''}`}>
         <div className="content-wrapper">

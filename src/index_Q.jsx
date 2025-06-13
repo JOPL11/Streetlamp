@@ -177,9 +177,11 @@ const handleDecline = () => {
             </div>
           </div>
         </div>
-        <div style={{ position: 'fixed', zIndex: 1001 }}>
-          <TextOverlay />
-        </div>
+        {contentVisible && (
+          <div style={{ position: 'fixed', zIndex: 1001 }}>
+            <TextOverlay visible={contentVisible} />
+          </div>
+        )}
         <CopyrightNotice />
         <Canvas 
             ref={canvasRef}
@@ -203,7 +205,12 @@ const handleDecline = () => {
                 <Noise premultiply dithering blendFunction={BlendFunction.SOFT_LIGHT} />
                 <Bloom luminanceThreshold={0.1} mipmapBlur luminanceSmoothing={0.1} intensity={2} />
                 {dpr > 1 && <DepthOfField target={[0, 2.5, 0]} focalLength={0.0075} bokehScale={1} height={0} />}
-                <ToneMapping needsUpdate={true} /> 
+             
+                <ToneMapping
+                needsUpdate={true}
+
+
+              />
               </EffectComposer>
 
               <Rain />

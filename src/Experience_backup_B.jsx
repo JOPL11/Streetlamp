@@ -984,9 +984,9 @@ const blue = new THREE.MeshPhysicalMaterial({
       minAzimuthAngle={-Math.PI / 3.5} // -45 degrees
       maxAzimuthAngle={Math.PI / 5} // 45 degrees
       enableDamping={true}
-      dampingFactor={0.01}
+      dampingFactor={0.005}
       screenSpacePanning={true}
-      panSpeed={0.5}
+      panSpeed={0.7}
       maxDistance={1}
       minDistance={-0.1}
       onChange={(e) => {
