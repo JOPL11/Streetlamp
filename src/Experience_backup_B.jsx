@@ -1289,7 +1289,7 @@ const blue = new THREE.MeshPhysicalMaterial({
           <Blimp />
           </Suspense>
           <Suspense fallback={null}>
-          <group scale={[1.5, 1.0, 1.0]} position={[0, 0, 7]}>
+          <group scale={[1.5, 1.0, 1.0]} position={[0, 0, 7]} depthTest={false} depthWrite={true}>
             <City />
           </group>
           </Suspense>
