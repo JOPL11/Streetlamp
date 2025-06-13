@@ -183,6 +183,19 @@ const handleDecline = () => {
           </div>
         )}
         <CopyrightNotice />
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          zIndex: 150,
+          pointerEvents: 'none',
+          background: 'linear-gradient(135deg, rgba(0,0,0,0.0) 0%, rgba(50,50,50,0.0) 100%)',
+          backdropFilter: 'saturate(120%) contrast(110%)',
+          WebkitBackdropFilter: 'saturate(120%) contrast(110%)',
+          opacity: 1
+        }} />
         <Canvas 
             ref={canvasRef}
             dpr={dpr} // Now controlled by PerformanceMonitor
@@ -194,8 +207,8 @@ const handleDecline = () => {
               frameBufferType: HalfFloatType  
             }}
           >
-            <color args={['#594A40']} attach="background" />
-            <fog attach="fog" color='#594A40' near={1} far={11} />
+            <color args={['#3f4554']} attach="background" />
+            <fog attach="fog" color='#3f4554' near={5} far={11} />
             
             <PerformanceMonitor onIncline={handleIncline} onDecline={handleDecline}  iterations={5} threshold={0.75}/>
 
