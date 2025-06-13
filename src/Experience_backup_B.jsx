@@ -1250,7 +1250,7 @@ const blue = new THREE.MeshPhysicalMaterial({
   
       <group ref={group2Ref} position={[0.9, 0.6, 0.6]}>
         <Html
-        scale={[0.12, 0.12, 0.12]}
+        scale={[0.11, 0.11, 0.11]}
           position={[-1, 1.5, 0]}
           transform
           occlude={false}

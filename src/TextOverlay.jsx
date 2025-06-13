@@ -22,7 +22,7 @@ const TextOverlay = ({ isVisible = true }) => {
     { 
       title: "Cinema4D / After Effects", 
       content: "",
-      image: "JPL3Poster.jpg",
+      image: "/images/JPL3Poster.jpg",
       link: "https://www.youtube.com/embed/WGGgQzQwH54?autoplay=1"
     },
     { 
