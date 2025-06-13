@@ -39,7 +39,6 @@ yarn-error.log*
 *.obj
 *.mtl
 *.png
-*.jpg
 *.jpeg
 *.webp
 *.bmp

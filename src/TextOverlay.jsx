@@ -22,7 +22,7 @@ const TextOverlay = ({ isVisible = true }) => {
     { 
       title: "Cinema4D / After Effects", 
       content: "",
-      image: "/JPL3Poster.jpg",
+      image: "JPL3Poster.jpg",
       link: "https://www.youtube.com/embed/WGGgQzQwH54?autoplay=1"
     },
     { 
@@ -40,49 +40,49 @@ const TextOverlay = ({ isVisible = true }) => {
     { 
       title: "", 
       content: "SMMD - Airbus München",
-      image: "/JPL3Poster.jpg",
+      image: "/images/JPL3Poster.jpg",
       link: ""
     },
     { 
       title: "", 
       content: "Siebert & Wolf - Mercedes Benz",
-      image: "/JPL3Poster.jpg",
+      image: "/images/JPL3Poster.jpg",
       link: ""
     },
     { 
       title: "", 
       content: "Siebert & Wolf - TÜV Süd",
-      image: "/JPL3Poster.jpg",
+      image: "/images/JPL3Poster.jpg",
       link: ""
     },
     { 
       title: "", 
       content: "Spiegel Geschichte TV - Website",
-      image: "/JPL3Poster.jpg",
+      image: "/images/JPL3Poster.jpg",
       link: ""
     },
     { 
       title: "", 
       content: "Spiegel Wissen - Website",
-      image: "/JPL3Poster.jpg",
+      image: "/images/JPL3Poster.jpg",
       link: ""
     },
     { 
       title: "", 
       content: "ULF - Festival Website",
-      image: "/JPL3Poster.jpg",
+      image: "/images/JPL3Poster.jpg",
       link: ""
     },
     { 
       title: "", 
       content: "Civic App",
-      image: "/JPL3Poster.jpg",
+      image: "/images/JPL3Poster.jpg",
       link: ""
     },
     { 
       title: "", 
       content: "Calendar App",
-      image: "/JPL3Poster.jpg",
+      image: "/images/JPL3Poster.jpg",
       link: ""
     },
     { 
