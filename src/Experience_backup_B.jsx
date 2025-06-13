@@ -1287,7 +1287,7 @@ const blue = new THREE.MeshPhysicalMaterial({
           />
         </Html>
         </group>
-        <group ref={group2Ref} position={[0, 1.2, -13]}>
+        <group ref={group2Ref} position={[0, 1, -13]}>
           <Blimp />
           <group scale={[1.99, 1.6, 1.6]} position={[0, 2.5, 0]}>
             <City />

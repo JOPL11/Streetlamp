@@ -130,19 +130,52 @@ const handleDecline = () => {
         {!modelsLoaded && <PreloadModels onModelsLoaded={() => setModelsLoaded(true)} />}
         <div className='splash-screen' style={{ position: 'relative', height: '100vh'}}>
         {/* Headline */}
-        <div className='headline'
+          <div className='headline'
           style={{
             fontFamily: 'InterDisplay, sans-serif',
-            fontSize: '25px', // Adjust size as needed
+            fontSize: '25px',
             color: 'white',
             position: 'absolute',
-            top: '25%', // Position at the top
+            top: '25%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            zIndex: 1501, // Ensure it's above other elements  <Rain />    <PreloadModels onModelsLoaded={handleModelsLoaded}  />   <MotionBlur velocityScale={0.5}  motionStrength={0.5} />
+            zIndex: 1501,
+            textAlign: 'center',
+            width: '100%'
           }}
         >
           Welcome
+          <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+            <button 
+              className="splash-button"
+              onClick={handleButtonClick} 
+              style={{
+                fontFamily: 'InterDisplay, sans-serif',
+                fontSize: '24px',
+                padding: '15px 30px',
+                color: 'white',
+                background: 'black',
+                border: '2px solid white',
+                borderRadius: '50px',
+                cursor: 'pointer',
+                zIndex: 1500,
+                opacity: buttonVisible ? 1 : 0,
+                transition: 'opacity 2s ease-in-out',
+              }}>
+              Enter
+            </button>
+            <div style={{
+              color: 'rgba(255, 255, 255, 0.7)',
+              fontSize: '14px',
+              fontStyle: 'italic',
+              opacity: buttonVisible ? 1 : 0,
+              transition: 'opacity 2s ease-in-out',
+              textAlign: 'center',
+              marginTop: '5px'
+            }}>
+              under construction
+            </div>
+          </div>
         </div>
         <div style={{ position: 'fixed', zIndex: 1001 }}>
           <TextOverlay />
@@ -204,32 +237,7 @@ const handleDecline = () => {
               borderRadius: '10px',
             }}
           >
-          {buttonVisible && (
-            <div style={{ position: 'absolute', top: '5%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-                <button 
-              className="splash-button"
-              onClick={handleButtonClick} 
-              style={{
-                fontFamily: 'InterDisplay, sans-serif',
-                fontSize: '24px',
-                padding: '15px 30px',
-                color: 'white',
-                background: 'black',
-                border: '2px solid white',
-                borderRadius: '50px',
-                cursor: 'pointer',
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                zIndex: 1500,
-                opacity: buttonVisible ? 1 : 0,
-                transition: 'opacity 2s ease-in-out',
-              }}>
-              Enter
-            </button>
-            </div>
-          )}
+          {/* Button has been moved to be under the Welcome text */}
         <div style={{ display: 'flex', pointerEvents: 'auto',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -237,7 +245,7 @@ const handleDecline = () => {
             </div>
             <div style={{ lineHeight: '1.8', top: '50px', position: 'relative' }}>
               <div></div>
-              <div>under construction</div>
+              <div></div>
              
             </div>
           </div>

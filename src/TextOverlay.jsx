@@ -9,19 +9,20 @@ const TextOverlay = ({ isVisible = true }) => {
   const sections = [
     { 
       title: "What", 
-      content: "React, Next.js, Cinema4d, After Effects",
+      content: "React, Next.js, Cinema4d, After Effects ",
       image: "",
       link: ""
     },
     { 
       title: "", 
-      content: "",
+      content: `I create and implement visual concepts, from original designs to refining existing CI/CD systems, with expertise in animation and interactive development. 3+ years management experience. 15+ years collaborating with agencies, in-house teams, and startups - balancing innovation with brand 
+  compliance, ensuring visual consistency across all deliverables.`,
       image: "",
       link: ""
     },
     { 
       title: "Cinema4D / After Effects", 
-      content: "",
+      content: "Audi, Mercedes, Airbus Group, MTU Aero Engines, OConnor Engineering, TÜV Süd, ",
       image: "/images/JPL3Poster.jpg",
       link: "https://www.youtube.com/embed/WGGgQzQwH54?autoplay=1"
     },
@@ -40,43 +41,43 @@ const TextOverlay = ({ isVisible = true }) => {
     { 
       title: "", 
       content: "SMMD - Airbus München",
-      image: "/images/JPL3Poster.jpg",
+      image: "",
       link: ""
     },
     { 
       title: "", 
       content: "Siebert & Wolf - Mercedes Benz",
-      image: "/images/JPL3Poster.jpg",
+      image: "",
       link: ""
     },
     { 
       title: "", 
       content: "Siebert & Wolf - TÜV Süd",
-      image: "/images/JPL3Poster.jpg",
+      image: "",
       link: ""
     },
     { 
       title: "", 
       content: "Spiegel Geschichte TV - Website",
-      image: "/images/JPL3Poster.jpg",
+      image: "",
       link: ""
     },
     { 
       title: "", 
       content: "Spiegel Wissen - Website",
-      image: "/images/JPL3Poster.jpg",
+      image: "",
       link: ""
     },
     { 
       title: "", 
       content: "ULF - Festival Website",
-      image: "/images/JPL3Poster.jpg",
+      image: "",
       link: ""
     },
     { 
       title: "", 
       content: "Civic App",
-      image: "/images/JPL3Poster.jpg",
+      image: "",
       link: ""
     },
     { 
