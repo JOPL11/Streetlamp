@@ -973,37 +973,33 @@ const blue = new THREE.MeshPhysicalMaterial({
       near={0.1} 
       far={1000}
     />
-    <OrbitControls
-      ref={controlsRef}
-      target={target}
-     
-      enableZoom={true}
-      enablePan={true}
-      minPolarAngle={Math.PI / 1.3} // ~60 degrees (reduced from 30)
-      maxPolarAngle={Math.PI / 1.8} // ~100 degrees (reduced from ~120)
-      minAzimuthAngle={-Math.PI / 3.5} // -45 degrees
-      maxAzimuthAngle={Math.PI / 5} // 45 degrees
-      enableDamping={true}
-      dampingFactor={0.005}
-      screenSpacePanning={true}
-      panSpeed={0.7}
-      maxDistance={1}
-      minDistance={-0.1}
-      onChange={(e) => {
-        // Limit vertical panning (Y-axis)
-        const minY = 1.0;  // Lower minimum Y for more downward movement
-        const maxY = 6.0;  // Higher maximum Y for more upward movement
-        
-        // Get current camera position
-        const position = e.target.object.position;
-        
-        // Clamp Y position between minY and maxY
-        position.y = Math.max(minY, Math.min(maxY, position.y));
-        
-        // Update camera position
-        e.target.object.position.copy(position);
-      }}
-    />
+      <OrbitControls
+        ref={controlsRef}
+        target={target}
+        enableDamping={true}
+        enablePan={true}
+        minPolarAngle={Math.PI / 1.3}
+        maxPolarAngle={Math.PI / 1.8}
+        minAzimuthAngle={-Math.PI / 3.5}
+        maxAzimuthAngle={Math.PI / 5}
+        screenSpacePanning={true}
+        maxDistance={1}
+        minDistance={-0.1}
+        // Mobile-specific settings
+        dampingFactor={window.innerWidth <= 768 ? 0.1 : 0.005}
+        rotateSpeed={window.innerWidth <= 768 ? 0.7 : 1}
+        panSpeed={window.innerWidth <= 768 ? 0.5 : 0.7}
+        enableZoom={window.innerWidth > 768}
+        touchDampingFactor={window.innerWidth <= 768 ? 0.2 : 0.1}
+        onChange={(e) => {
+          // Limit vertical panning (Y-axis)
+          const minY = 1.0;
+          const maxY = 6.0;
+          const position = e.target.object.position;
+          position.y = Math.max(minY, Math.min(maxY, position.y));
+          e.target.object.position.copy(position);
+        }}
+      />
     <primitive object={floor} material={matteblack}/>
 
     {/* Spotlight for objA */}
