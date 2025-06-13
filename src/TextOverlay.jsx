@@ -172,6 +172,12 @@ const TextOverlay = ({ visible = false }) => {
     },
     { 
       title: "", 
+      content: "SMMD - Airbus Berlin",
+      image: "",
+      link: ""
+    },
+    { 
+      title: "", 
       content: "SMMD - Airbus München",
       image: "",
       link: ""
