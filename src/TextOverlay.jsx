@@ -8,14 +8,14 @@ const TextOverlay = ({ visible = false }) => {
   // Project information
   const sections = [
     { 
-      title: "What", 
-      content: "Jan Peiro was born in Barcelona, Spain in 1988. ",
+      title: "Folio", 
+      content: "Jan Peiro was born in Barcelona, Spain in 1988. Grew up in Canada & Europe. Studied communications Design in Munich.",
       image: "",
       link: ""
     },
     { 
       title: "", 
-      content: `I create and implement visual concepts, from original designs to refining existing CI/CD systems, with expertise in animation and interactive development. 3+ years management experience. 15+ years collaborating with agencies, in-house teams, and startups - balancing innovation with brand 
+      content: `Creates and implements visual concepts, from original designs to refining existing CI/CD systems, with expertise in animation and interactive development. 3+ years management experience. 15+ years collaborating with agencies, in-house teams, and startups - balancing innovation with brand 
   compliance, ensuring visual consistency across all deliverables.`,
       image: "",
       link: ""
