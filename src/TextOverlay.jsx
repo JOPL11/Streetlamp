@@ -1,28 +1,96 @@
 import React, { useRef, useState } from 'react';
 import './TextOverlay.new.css';
 
-const TextOverlay = () => {
+const TextOverlay = ({ isVisible = true }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleRef = useRef(null);
 
   // Project information
   const sections = [
-    { title: "What", content: "React, Next.js, Cinema4d, After Effects" },
-    { title: "", content: "" },
+    { 
+      title: "What", 
+      content: "React, Next.js, Cinema4d, After Effects",
+      image: "",
+      link: ""
+    },
+    { 
+      title: "", 
+      content: "",
+      image: "",
+      link: ""
+    },
     { 
       title: "Cinema4D / After Effects", 
       content: "",
-      videoId: "https://www.youtube.com/embed/WGGgQzQwH54?autoplay=1"  // Replace with your YouTube video ID
+      image: "/JPL3Poster.jpg",
+      link: "https://www.youtube.com/embed/WGGgQzQwH54?autoplay=1"
     },
-    { title: "", content: "" },
-    { title: "Next.js / Three.js / React", content: "" },
-    { title: "", content: "SMMD - Airbus München" },
-    { title: "", content: "Siebert & Wolf - Mercedes Benz" },
-    { title: "", content: "Siebert & Wolf - TÜV Süd" },
-    { title: "", content: "Spiegel Geschichte TV - Website" },
-    { title: "", content: "Spiegel Wissen - Website" },
-    { title: "", content: "ULF - Festival Website" },
-    { title: "Contact", content: "jan.peiro@protonmail.com" },
+    { 
+      title: "", 
+      content: "",
+      image: "",
+      link: ""
+    },
+    { 
+      title: "Next.js / Three.js / React", 
+      content: "",
+      image: "",
+      link: ""
+    },
+    { 
+      title: "", 
+      content: "SMMD - Airbus München",
+      image: "/JPL3Poster.jpg",
+      link: ""
+    },
+    { 
+      title: "", 
+      content: "Siebert & Wolf - Mercedes Benz",
+      image: "/JPL3Poster.jpg",
+      link: ""
+    },
+    { 
+      title: "", 
+      content: "Siebert & Wolf - TÜV Süd",
+      image: "/JPL3Poster.jpg",
+      link: ""
+    },
+    { 
+      title: "", 
+      content: "Spiegel Geschichte TV - Website",
+      image: "/JPL3Poster.jpg",
+      link: ""
+    },
+    { 
+      title: "", 
+      content: "Spiegel Wissen - Website",
+      image: "/JPL3Poster.jpg",
+      link: ""
+    },
+    { 
+      title: "", 
+      content: "ULF - Festival Website",
+      image: "/JPL3Poster.jpg",
+      link: ""
+    },
+    { 
+      title: "", 
+      content: "Civic App",
+      image: "/JPL3Poster.jpg",
+      link: ""
+    },
+    { 
+      title: "", 
+      content: "Calendar App",
+      image: "/JPL3Poster.jpg",
+      link: ""
+    },
+    { 
+      title: "Contact", 
+      content: "jan.peiro@protonmail.com",
+      image: "",
+      link: ""
+    },
   ];
 
   const togglePanel = (e) => {
@@ -47,17 +115,37 @@ const TextOverlay = () => {
             <div key={index} className="text-section">
               {section.title && <h3>{section.title}</h3>}
               {section.content && <p>{section.content}</p>}
-              {section.videoId && (
-                <div className="video-container">
-                  <iframe
-                    width="100%"
-                    height="200"
-                    src={`https://www.youtube.com/embed/${section.videoId}`}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
+              {section.image && (
+                <div className="image-container">
+                  {section.link ? (
+                    <a href={section.link} target="_blank" rel="noopener noreferrer">
+                      <img 
+                        src={section.image} 
+                        alt={section.content || section.title} 
+                        style={{ 
+                          width: 'auto', 
+                          height: 'auto', 
+                          maxHeight: '200px', 
+                          objectFit: 'cover', 
+                          borderRadius: '20px', 
+                          marginTop: '10px' 
+                        }}
+                      />
+                    </a>
+                  ) : (
+                    <img 
+                      src={section.image} 
+                      alt={section.content || section.title} 
+                      style={{ 
+                        width: 'auto', 
+                        height: 'auto', 
+                        maxHeight: '200px', 
+                        objectFit: 'cover', 
+                        borderRadius: '20px', 
+                        marginTop: '10px' 
+                      }}
+                    />
+                  )}
                 </div>
               )}
             </div>

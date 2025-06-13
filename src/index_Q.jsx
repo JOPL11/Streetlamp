@@ -98,19 +98,15 @@ const handleDecline = () => {
 
 
     const handleButtonClick = () => {
-        
         setIsLoaded(true);
         setButtonClicked(true);
-        // Show content and base element
-        //gsap.to('.scrollhold', { opacity: 1, duration: 3, delay:2});
-        // Button transition
-        gsap.to('button', { opacity: 0, duration: 2 });
-        gsap.to('button', { y: -50000, duration: 0, delay: 2 });
-        gsap.to('.not', { opacity: 0, duration: 2 });
-        gsap.to('.not', { y: -50000, duration: 0, delay: 2 });
+        // Only target the splash screen elements specifically
+        gsap.to('.splash-button', { opacity: 0, duration: 2 });
+        gsap.to('.splash-button', { y: -50000, duration: 0, delay: 2 });
+        gsap.to('.splash-content', { opacity: 0, duration: 2 });
+        gsap.to('.splash-content', { y: -50000, duration: 0, delay: 2 });
         gsap.to('.headline', { opacity: 0, duration: 2 });
         gsap.to('.headline', { y: -50000, duration: 0, delay: 2 });
-       // setTimeout(() => setlevelUpButtonVisible(true), 1100); // Adjust delay as needed
         setContentVisible(true);
 
         // Play or restart audio
@@ -132,7 +128,7 @@ const handleDecline = () => {
             <>
           
         {!modelsLoaded && <PreloadModels onModelsLoaded={() => setModelsLoaded(true)} />}
-        <div className='not2' style={{ position: 'relative', height: '100vh'}}>
+        <div className='splash-screen' style={{ position: 'relative', height: '100vh'}}>
         {/* Headline */}
         <div className='headline'
           style={{
@@ -146,13 +142,11 @@ const handleDecline = () => {
             zIndex: 1501, // Ensure it's above other elements  <Rain />    <PreloadModels onModelsLoaded={handleModelsLoaded}  />   <MotionBlur velocityScale={0.5}  motionStrength={0.5} />
           }}
         >
-          wordpress?
+          Welcome
         </div>
-        {contentVisible && (
-          <div style={{ position: 'fixed', zIndex: 1001  }}>
-            <TextOverlay isVisible={contentVisible} />
-          </div>
-        )}
+        <div style={{ position: 'fixed', zIndex: 1001 }}>
+          <TextOverlay />
+        </div>
         <CopyrightNotice />
         <Canvas 
             ref={canvasRef}
@@ -188,7 +182,7 @@ const handleDecline = () => {
             <Preload all />
           </Canvas>
           <div
-            className='not'
+            className='splash-content not'
             style={{
               fontFamily: 'InterDisplay, sans-serif',
               display: 'flex',
@@ -213,29 +207,28 @@ const handleDecline = () => {
           {buttonVisible && (
             <div style={{ position: 'absolute', top: '5%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                 <button 
-            onClick={handleButtonClick}
-            style={{
-              fontFamily: 'InterDisplay, sans-serif',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '50px',
-              width: '150px',
-              padding: '5px',
-              backgroundColor: '#ff471a',
-              outline: 'none',
-              fontSize: '25px',
-              zIndex: 2001, // Set a higher z-index
-              border: 'none',
-              color: 'white',
-              borderRadius: '10px',
-              cursor: 'pointer',
-              userSelect: 'none',
-            }}
-            aria-label="Start the process"
-          >
-              Begin
-            </button> </div>
+              className="splash-button"
+              onClick={handleButtonClick} 
+              style={{
+                fontFamily: 'InterDisplay, sans-serif',
+                fontSize: '24px',
+                padding: '15px 30px',
+                color: 'white',
+                background: 'black',
+                border: '2px solid white',
+                borderRadius: '50px',
+                cursor: 'pointer',
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 1500,
+                opacity: buttonVisible ? 1 : 0,
+                transition: 'opacity 2s ease-in-out',
+              }}>
+              Enter
+            </button>
+            </div>
           )}
         <div style={{ display: 'flex', pointerEvents: 'auto',
               flexDirection: 'column',
@@ -244,7 +237,7 @@ const handleDecline = () => {
             </div>
             <div style={{ lineHeight: '1.8', top: '50px', position: 'relative' }}>
               <div></div>
-              <div> Dystopian Streetlamp </div>
+              <div> </div>
              
             </div>
           </div>
