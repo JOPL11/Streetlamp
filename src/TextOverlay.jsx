@@ -9,7 +9,7 @@ const TextOverlay = ({ visible = false }) => {
   const sections = [
     { 
       title: "What", 
-      content: "React, Next.js, Cinema4d, After Effects ",
+      content: "Jan Peiro was born in Barcelona, Spain in 1988. ",
       image: "",
       link: ""
     },

@@ -1287,16 +1287,30 @@ const blue = new THREE.MeshPhysicalMaterial({
           />
         </Html>
         </group>
+       
         <group ref={group2Ref} position={[0, 1, -13]}>
+        <Suspense fallback={null}>
           <Blimp />
+          </Suspense>
+          <Suspense fallback={null}>
           <group scale={[1.99, 1.6, 1.6]} position={[0, 2.5, 0]}>
             <City />
           </group>
+          </Suspense>
+          <Suspense fallback={null}>
           <Car1 />
+          </Suspense>
+          <Suspense fallback={null}>
           <Car2 />
+          </Suspense>
+          <Suspense fallback={null}>
           <Car3 />
+          </Suspense>
+          <Suspense fallback={null}>
           <Decker />
+          </Suspense>
         </group>
+        
        <group rotation={[0, Math.PI / 0.455, 0]} position={[-0.426, 1.4, -12]}   onClick={animateGroups3}>
    
           <planeGeometry   args={[0.5, 0.7]}    
